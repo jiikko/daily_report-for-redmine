@@ -1,4 +1,4 @@
-# dailiy_report-for-redmine
+# daily_report-for-redmine
 Get today issues title.
 It can be padding content of dairy report.
 
@@ -7,9 +7,9 @@ Redmine, '2.3.0.devel'
 
 ## Installation
 ```
-$ git clone https://github.com/jiikko/autologin-staging
+$ git clone https://github.com/jiikko/daily_report-for-redmine
 ```
-from `chrome://extensions`
+Install from `chrome://extensions`
 
 ## Usage
 * click
