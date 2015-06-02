@@ -1,0 +1,17 @@
+{
+  "name": "dailiy_report-for-redmine",
+  "version": "0.1",
+  "description": "今日やったこと",
+  "manifest_version": 2,
+  // "icons": {
+  //   "128": "images/icon_128.png",
+  //   "48": "images/icon_048.png",
+  //   "16": "images/icon_016.png"
+  // },
+  "browser_action": {
+    // "default_icon": "images/icon_019.png",
+    "default_title": "dailiy_report-for-redmine",
+    "default_popup": "popup.html"
+    },
+  "permissions": [ "https://its.actindi.net/*"]
+}
