@@ -3,14 +3,13 @@ $(function() {
 
   Issue = function(id) {
     self = this;
-    // チケットのオブジェクトを取得する
     $.ajax({
       url: URL + "/issues/" + id,
       async: false,
       type: 'get',
       dataType: "html",
       success: function (data) {
-        $data = $(data);
+        var $data = $(data);
         self.percent = $data.find(".percent").text();
         self.subject = $data.find(".subject h3").text();
       }
@@ -47,7 +46,7 @@ $(function() {
     return user_id;
   };
 
-  // 該当日付のチケットurlのコレクションを取得する
+  // 該当日付のチケットidのコレクションを取得する
   var issue_id_set = function () {
     var today = get_today(), id_set = new Set();
     $.ajax({
@@ -69,7 +68,7 @@ $(function() {
         issues_parent_dom.find("a").each(function(_, link) {
           var $link = $(link);
           if(/^.issues/.test($link.attr("href"))) { // チケットURLのlinkだけを抽出
-            id = $link.attr("href").match(/issues.(\d*)#?/)[1];
+            var id = $link.attr("href").match(/issues.(\d*)#?/)[1];
             id_set.add(id);
           }
         });
