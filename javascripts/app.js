@@ -49,6 +49,7 @@ $(function() {
   // 該当日付のチケットidのコレクションを取得する
   var issue_id_set = function () {
     var today = get_today(), id_set = new Set();
+    today = "今日"; // 当日に限る
     $.ajax({
       url: URL + '/activity',
       async: false,
