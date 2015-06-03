@@ -19,7 +19,7 @@ $(function() {
   };
   Issue.prototype = {
     formalized: function() {
-      return this.subject + "/" + self.status + "(" + this.percent + ")";
+      return this.subject + "/" + this.status + "(" + this.percent + ")";
     }
   };
 
