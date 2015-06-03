@@ -12,13 +12,14 @@ $(function() {
         var $data = $(data);
         self.percent = $data.find(".percent").text();
         self.subject = $data.find(".subject h3").text();
+        self.status = $data.find("table.attributes td.status").text();
       }
     })
     return self;
   };
   Issue.prototype = {
     formalized: function() {
-      return this.subject + "(" + this.percent + ")";
+      return this.subject + "/" + self.status + "(" + this.percent + ")";
     }
   };
 
