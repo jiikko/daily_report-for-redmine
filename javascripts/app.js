@@ -79,14 +79,22 @@ $(function() {
     return id_set;
   };
 
+  $("#copy").click(function(e) {
+    var text = $("[data=issues-content]").html();
+    var clipbox = $("#clipbox");
+    text = text.replace(/<br>/g, "\r\n");
+    clipbox.val(text);
+    clipbox.select();
+    document.execCommand('copy');
+  });
+
   $("#fire").click(function(e) {
+    var containar = $("div[data=issues-content]");
     for (var id of issue_id_set().values()) {
-      var $p = $("<div>");
-      $("body").append(
-        $p.html(
-          (new Issue(id)).formalized()
-        )
+      containar.append(
+        (new Issue(id)).formalized()
       );
-    }
+      containar.append("<br>");
+    } // end for
   });
 });

@@ -7,5 +7,5 @@
     "default_title": "daily_report-for-redmine",
     "default_popup": "popup.html"
     },
-  "permissions": [ "https://its.actindi.net/*"]
+  "permissions": [ "https://its.actindi.net/*", "clipboardWrite"]
 }
