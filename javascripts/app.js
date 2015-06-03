@@ -2,7 +2,7 @@ $(function() {
   var URL = 'https://its.actindi.net', Issue;
 
   Issue = function(id) {
-    self = this;
+    var self = this;
     $.ajax({
       url: URL + "/issues/" + id,
       async: false,
