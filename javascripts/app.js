@@ -1,6 +1,5 @@
 $(function() {
-  var URL = 'https://its.actindi.net', Issue;
-
+  var URL = 'https://its.actindi.net', Issue, Display;
   Issue = function(id) {
     var self = this;
     $.ajax({
@@ -18,8 +17,30 @@ $(function() {
     return self;
   };
   Issue.prototype = {
-    formalized: function() {
+    formalize: function () {
       return this.subject + "/" + this.status + "(" + this.percent + ")";
+    }
+  };
+
+  Display = function () {
+    this._$containar = $("#containar");
+  };
+  Display.prototype = {
+    flush: function () {
+      this._$containar.html('');
+    },
+    add: function (text)  {
+      var x = this._$containar.html()
+      this._$containar.html(x + text);
+    },
+    show_error_msg: function (error_msg) {
+    },
+    show_copy_button: function () {
+      this._$containar.prepend(
+        "<div>" +
+          "<input id='copy' type='button' value='クリップボードにコピーする'>" +
+        "</div>"
+      );
     }
   };
 
@@ -89,12 +110,14 @@ $(function() {
   });
 
   $("#fire").click(function(e) {
-    var containar = $("div[data=issues-content]");
+    var display = new Display();
+    display.flush();
     for (var id of issue_id_set().values()) {
-      containar.append(
-        (new Issue(id)).formalized()
-      );
-      containar.append("<br>");
+      display.add(
+        (new Issue(id)).formalize()
+      )
+      display.add("<br>");
     } // end for
+    display.show_copy_button();
   });
 });
