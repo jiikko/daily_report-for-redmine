@@ -38,7 +38,7 @@ $(function() {
       this._$containar.html(x);
     },
     show_copy_button: function () {
-      this._$containar.prepend(
+      this._$containar.before(
         "<div>" +
           "<input id='copy' type='button' value='クリップボードにコピーする'>" +
         "</div>"
