@@ -34,6 +34,8 @@ $(function() {
       this._$containar.html(x + text);
     },
     show_error_msg: function (error_msg) {
+      var x = "<div style='color: red;'>" + error_msg + "</div>";
+      this._$containar.html(x);
     },
     show_copy_button: function () {
       this._$containar.prepend(
@@ -79,7 +81,7 @@ $(function() {
       dataType: "html",
       data: 'user_id=' + get_user_id(),
       success: function (data) {
-        var $today_h3;
+        var $today_h3 = undefined;
         $(data).find("h3").each(function(_, h3) {
           var $h3= $(h3);
           if($h3.text() == today) {
@@ -87,6 +89,9 @@ $(function() {
             return;
           }
         });
+        if($today_h3 === undefined) {
+          $(document).trigger("error", ["今日変更したチケットがありません"]);
+        }
         var issues_parent_dom = $today_h3.next();
         issues_parent_dom.find("a").each(function(_, link) {
           var $link = $(link);
@@ -100,8 +105,8 @@ $(function() {
     return id_set;
   };
 
-  $("#copy").click(function(e) {
-    var text = $("[data=issues-content]").html();
+  $(document).on("click", "#copy", function () {
+    var text = $("#containar").html();
     var clipbox = $("#clipbox");
     text = text.replace(/<br>/g, "\r\n");
     clipbox.val(text);
@@ -120,4 +125,10 @@ $(function() {
     } // end for
     display.show_copy_button();
   });
+
+  $(document).on("error", function (e, msg) {
+    var display = new Display();
+    display.flush();
+    display.show_error_msg(msg);
+  })
 });
